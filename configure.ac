@@ -143,9 +143,10 @@ AC_SUBST(NEON_PC_LIBS)
 # Pass the interface version on to libtool when linking libneon.la
 NEON_LINK_FLAGS="-version-info ${NE_LIBTOOL_VERSINFO}"
 # If any non-default ABI variations are used, add them to the SONAME:
-if test "x${NE_LIBTOOL_RELEASE}y" != "xy"; then
-   NEON_LINK_FLAGS="${NEON_LINK_FLAGS} -release ${NE_LIBTOOL_RELEASE}"
-fi
+### disabled for backwards-compat with 0.27.x
+#if test "x${NE_LIBTOOL_RELEASE}y" != "xy"; then
+#   NEON_LINK_FLAGS="${NEON_LINK_FLAGS} -release ${NE_LIBTOOL_RELEASE}"
+#fi
 
 gl_LD_VERSION_SCRIPT
 # If ld version scripts are supported, enable symbol versioning.
@@ -174,7 +175,7 @@ fi
 ALL_LINGUAS="cs de fr ja nn pl ru tr zh_CN"
 AC_SUBST(ALL_LINGUAS)
 
-AC_CONFIG_FILES([neon-config po/Makefile.in], [chmod +x neon-config])
+AC_CONFIG_FILES([neon-config], [chmod +x neon-config])
 AC_CONFIG_FILES([Makefile src/Makefile test/Makefile neon.pc])
 AC_CONFIG_FILES([test/makekeys:test/makekeys.sh], [chmod +x test/makekeys])
 
